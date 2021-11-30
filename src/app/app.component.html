@@ -1,10 +1,12 @@
 <div id="grid">
-  <div id="header">
+  <div id="header" class="basic-border">
     <label>Herolo Wether Task</label>
     <div class="buttons">
-      <button>Home</button>
-      <button>Favorites</button>
+      <button class="menu-button" [routerLink]="['/home']">Home</button>
+      <button class="menu-button"  [routerLink]="['/favorites']">Favorites</button>
     </div>
   </div>
-  <div id="page"></div>
+  <div class="page row basic-border">
+    <router-outlet></router-outlet>
+  </div>
 </div>

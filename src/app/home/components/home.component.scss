@@ -1,0 +1,68 @@
+@import 'src/styles/helpers';
+
+.search-frame {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.search-control {
+    border-radius: 2px;
+    height: 25px;
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+}
+
+.search-control::placeholder {                   
+    text-align: center;
+    margin-left: 120px;
+    color: black;
+}
+
+.icon{
+    width: 2px;
+    position: relative;
+    right: 290px;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    vertical-align: middle;
+}
+
+.info-frame{
+    width: 700px;
+    height: 500px;
+}
+
+.current-weather{
+    margin: 10px 0px 0px 10px;
+    line-height: 2;
+}
+
+h1{
+    font-family: "Rockwell", "Courier New", monospace;
+}
+
+.day-card{
+    margin: 5px;
+    line-height: 2;
+}
+
+.day-card-frame{
+    margin-top: 100px;
+}
+
+.favorite-frame{
+    margin-left: 370px;
+    margin-top: 10px;
+}
+
+.favorite-icon{
+    font-size: 14px;
+}
+
+.favorite-button{
+    width: 160px;
+    margin: auto auto 100px auto;
+}
+

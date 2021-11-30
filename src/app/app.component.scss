@@ -1,0 +1,45 @@
+@import 'src/styles/helpers';
+
+#grid{
+    display: grid;
+    grid-template-rows: 10% 90%;
+    height: 800px;
+}
+
+#header{
+    display: flex;
+}
+
+.page{
+    text-align: center;    
+}
+
+.buttons{
+    width: 50%;
+    text-align: right;
+    margin: auto;
+    margin-right: 10px;
+}
+
+.menu-button{
+    width: 70px;
+    padding: 3px;
+}
+
+.menu-button:focus{
+   background-color: grey;
+}
+
+label{
+    margin: auto;
+    width: 50%;
+    margin-left:10px;
+}
+
+
+
+
+
+
+
+
