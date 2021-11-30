@@ -25,7 +25,7 @@ export class HomeEffects {
       switchMap((payload) => {
         return this.httpClient
         .get(
-          `${environment.baseServerUrl}/locations/v1/cities/autocomplete?apikey=${environment.apikey}&q=${payload.searchText}&languge=en-us`,
+          `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=hmFDpTqjiLEocysyuvMGkhnJeDZGzuXq&q=${payload.searchText}&languge=en-us`,
         )
         .pipe(
           map((response: any) => {
@@ -56,7 +56,7 @@ export class HomeEffects {
       switchMap((payload) => {
         return this.httpClient
         .get(
-          `${environment.baseServerUrl}/currentconditions/v1/${payload.key}?apikey=${environment.apikey}&languge=en-us&details=false`,
+          `http://dataservice.accuweather.com/currentconditions/v1/${payload.key}?apikey=hmFDpTqjiLEocysyuvMGkhnJeDZGzuXq&languge=en-us&details=false`,
         )
         .pipe(
           map((response: any) => {
@@ -85,7 +85,7 @@ export class HomeEffects {
       switchMap((payload) => {
         return this.httpClient
         .get(
-          `${environment.baseServerUrl}/forecasts/v1/daily/5day/${payload.key}?apikey=${environment.apikey}&languge=en-us&details=false&metric=true`,
+          `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${payload.key}?apikey=hmFDpTqjiLEocysyuvMGkhnJeDZGzuXq&languge=en-us&details=false&metric=true`,
         )
         .pipe(
           map((response: any) => {
