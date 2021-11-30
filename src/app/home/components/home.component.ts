@@ -12,172 +12,12 @@ import { HomeState } from '../types/home-state.interface';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  searchText:any='tel-aviv';
-  weatherText:any='Sunny';
-  currentWeather:any= 25;//number|undefined;
-  cityName:any='tel-aviv';
-  locationKey:any=215793;
-  weekWeather:any=[
-    {
-      "Date": "2021-11-29T07:00:00+02:00",
-      "EpochDate": 1638162000,
-      "Temperature": {
-        "Minimum": {
-          "Value": 19.8,
-          "Unit": "C",
-          "UnitType": 17
-        },
-        "Maximum": {
-          "Value": 30.2,
-          "Unit": "C",
-          "UnitType": 17
-        }
-      },
-      "Day": {
-        "Icon": 4,
-        "IconPhrase": "Intermittent clouds",
-        "HasPrecipitation": false
-      },
-      "Night": {
-        "Icon": 36,
-        "IconPhrase": "Intermittent clouds",
-        "HasPrecipitation": false
-      },
-      "Sources": [
-        "AccuWeather"
-      ],
-      "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?unit=c&lang=en-us",
-      "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?unit=c&lang=en-us"
-    },
-    {
-      "Date": "2021-11-30T07:00:00+02:00",
-      "EpochDate": 1638248400,
-      "Temperature": {
-        "Minimum": {
-          "Value": 20.1,
-          "Unit": "C",
-          "UnitType": 17
-        },
-        "Maximum": {
-          "Value": 27.1,
-          "Unit": "C",
-          "UnitType": 17
-        }
-      },
-      "Day": {
-        "Icon": 6,
-        "IconPhrase": "Mostly cloudy",
-        "HasPrecipitation": false
-      },
-      "Night": {
-        "Icon": 38,
-        "IconPhrase": "Mostly cloudy",
-        "HasPrecipitation": false
-      },
-      "Sources": [
-        "AccuWeather"
-      ],
-      "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=1&unit=c&lang=en-us",
-      "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=1&unit=c&lang=en-us"
-    },
-    {
-      "Date": "2021-12-01T07:00:00+02:00",
-      "EpochDate": 1638334800,
-      "Temperature": {
-        "Minimum": {
-          "Value": 19.4,
-          "Unit": "C",
-          "UnitType": 17
-        },
-        "Maximum": {
-          "Value": 21.6,
-          "Unit": "C",
-          "UnitType": 17
-        }
-      },
-      "Day": {
-        "Icon": 14,
-        "IconPhrase": "Partly sunny w/ showers",
-        "HasPrecipitation": true,
-        "PrecipitationType": "Rain",
-        "PrecipitationIntensity": "Light"
-      },
-      "Night": {
-        "Icon": 35,
-        "IconPhrase": "Partly cloudy",
-        "HasPrecipitation": true,
-        "PrecipitationType": "Rain",
-        "PrecipitationIntensity": "Light"
-      },
-      "Sources": [
-        "AccuWeather"
-      ],
-      "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=2&unit=c&lang=en-us",
-      "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=2&unit=c&lang=en-us"
-    },
-    {
-      "Date": "2021-12-02T07:00:00+02:00",
-      "EpochDate": 1638421200,
-      "Temperature": {
-        "Minimum": {
-          "Value": 16.2,
-          "Unit": "C",
-          "UnitType": 17
-        },
-        "Maximum": {
-          "Value": 21.6,
-          "Unit": "C",
-          "UnitType": 17
-        }
-      },
-      "Day": {
-        "Icon": 3,
-        "IconPhrase": "Partly sunny",
-        "HasPrecipitation": false
-      },
-      "Night": {
-        "Icon": 35,
-        "IconPhrase": "Partly cloudy",
-        "HasPrecipitation": false
-      },
-      "Sources": [
-        "AccuWeather"
-      ],
-      "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=3&unit=c&lang=en-us",
-      "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=3&unit=c&lang=en-us"
-    },
-    {
-      "Date": "2021-12-03T07:00:00+02:00",
-      "EpochDate": 1638507600,
-      "Temperature": {
-        "Minimum": {
-          "Value": 17.4,
-          "Unit": "C",
-          "UnitType": 17
-        },
-        "Maximum": {
-          "Value": 22.4,
-          "Unit": "C",
-          "UnitType": 17
-        }
-      },
-      "Day": {
-        "Icon": 4,
-        "IconPhrase": "Intermittent clouds",
-        "HasPrecipitation": false
-      },
-      "Night": {
-        "Icon": 35,
-        "IconPhrase": "Partly cloudy",
-        "HasPrecipitation": false
-      },
-      "Sources": [
-        "AccuWeather"
-      ],
-      "MobileLink": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=4&unit=c&lang=en-us",
-      "Link": "http://www.accuweather.com/en/il/tel-aviv-port/215793/daily-weather-forecast/215793?day=4&unit=c&lang=en-us"
-    }
-  ]
+  searchText:any='Tel-aviv';
+  weatherText:any;
+  currentWeather:any;
+  cityName:any;
+  locationKey:any;
+  weekWeather:any=[];
   enterInput=false;
   unsubscribe$ = new Subject();
   isFavorite=false;
@@ -190,11 +30,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFavoritesArr();
-    // this.store.dispatch(
-    //   new GetHome({
-    //     searchText:this.searchText
-    //   }),
-    // )
+    this.store.dispatch(
+      new GetHome({
+        searchText:this.searchText
+      }),
+    )
     
     const index=this.favoritesArr.findIndex(item=>item.locationKey===this.locationKey);
         if (index > -1) {
@@ -240,7 +80,6 @@ export class HomeComponent implements OnInit {
   }
 
   addToFavorites(){
-    console.log("before ",this.favoritesArr);
     this.favoritesArr.push({
       locationKey: this.locationKey,
       cityName:this.cityName,
@@ -249,7 +88,6 @@ export class HomeComponent implements OnInit {
     });
     this.sharedService.setFavorites(JSON.stringify(this.favoritesArr));
     this.isFavorite=true;
-    console.log("after ",this.favoritesArr);
   }
 
   removeFromFavorites(){
