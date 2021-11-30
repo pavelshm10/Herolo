@@ -3,16 +3,23 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 8080",
+    "heroku-postbuild": "ng build --prod",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.0.0",
+    "@angular/cli": "~13.0.3",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
+    "@angular/compiler-cli": "~13.0.0",
     "@angular/core": "~13.0.0",
     "@angular/forms": "~13.0.0",
     "@angular/material": "^13.0.2",
@@ -23,9 +30,12 @@
     "@ngrx/effects": "^13.0.1",
     "@ngrx/store": "^13.0.1",
     "@ngrx/store-devtools": "^13.0.1",
+    "express": "^4.17.1",
     "material-icons": "^1.10.3",
+    "path": "^0.12.7",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
+    "typescript": "~4.4.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
