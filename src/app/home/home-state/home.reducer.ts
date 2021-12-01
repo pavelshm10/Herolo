@@ -22,6 +22,12 @@ export function homeReducer(state = initialState, action: HomeActions):HomeState
             ...state,
             weekWeather: action.payload.weekWeather
           };
+          case HomeActionTypes.GetCurrentLocationSuccess:
+            return {
+              ...state,
+              locationKey: action.payload.key,
+              cityName: action.payload.cityName
+            };
         default:
           return state;
     }

@@ -10,6 +10,9 @@ export enum HomeActionTypes {
     GetWeekWeather = '[Home] GetWeekWeather',
     GetWeekWeatherSuccess='[Home] GetWeekWeatherSuccess',
     GetWeekWeatherFailure='[Home] GetWeekWeatherFailure',
+    GetCurrentLocation = '[Home] GetCurrentLocation',
+    GetCurrentLocationSuccess='[Home] GetCurrentLocationSuccess',
+    GetCurrentLocationFailure='[Home] GetCurrentLocationFailure',
   }
 
 export class GetHome implements Action {
@@ -80,6 +83,30 @@ export class GetWeekWeatherFailure implements Action {
     constructor() {}
 }
 
+export class GetCurrentLocation implements Action {
+    readonly type = HomeActionTypes.GetCurrentLocation;
+    constructor(public payload:{
+        lat : number;
+        lon : number;
+    },
+    ) {}
+}
+
+export class GetCurrentLocationSuccess implements Action {
+    readonly type = HomeActionTypes.GetCurrentLocationSuccess;
+    constructor(
+        public payload: {
+            key:number;
+            cityName: string;
+        },
+      ) {}
+}
+
+export class GetCurrentLocationFailure implements Action {
+    readonly type = HomeActionTypes.GetCurrentLocationFailure;
+    constructor() {}
+}
+
 export type HomeActions=
     |GetHome
     |GetHomeSuccess
@@ -89,5 +116,8 @@ export type HomeActions=
     |GetCurrentWeatherFailure
     |GetWeekWeather
     |GetWeekWeatherSuccess
-    |GetWeekWeatherFailure;
+    |GetWeekWeatherFailure
+    |GetCurrentLocation
+    |GetCurrentLocationSuccess
+    |GetCurrentLocationFailure;
     

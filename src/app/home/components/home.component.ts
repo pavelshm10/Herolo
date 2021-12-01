@@ -3,7 +3,7 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { AppState } from 'src/app/shared/types/state.interface.ts';
-import { GetHome, GetCurrentWeather, GetWeekWeather } from '../home-state/home.actions';
+import { GetHome, GetCurrentWeather, GetWeekWeather,GetCurrentLocation } from '../home-state/home.actions';
 import { HomeState } from '../types/home-state.interface';
 
 @Component({
@@ -30,11 +30,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFavoritesArr();
-    this.store.dispatch(
-      new GetHome({
-        searchText:this.searchText
-      }),
-    )
+    this.findCurrentLocation();
     this.updateFavoriteButton();
 
     this.store
@@ -43,7 +39,7 @@ export class HomeComponent implements OnInit {
       takeUntil(this.unsubscribe$),
     )
     .subscribe((key) => {
-       key ? 
+        key ? 
        this.getWeatherAndDays(key)
        : ''
     });
@@ -59,9 +55,21 @@ export class HomeComponent implements OnInit {
         this.currentWeather=home.currentWeather;
         this.weekWeather=home.weekWeather;
         this.cityName=home.cityName;
+        this.searchText=home.cityName;
         this.locationKey=home.locationKey;
         this.updateFavoriteButton();
       }
+    });
+  }
+
+  findCurrentLocation(){
+    navigator.geolocation.getCurrentPosition((position) => {
+          // this.store.dispatch(
+          //   new GetCurrentLocation({
+          //     lat:position.coords.latitude,
+          //     lon:position.coords.longitude
+          //   }),
+          // )
     });
   }
 

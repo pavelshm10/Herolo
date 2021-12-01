@@ -1,5 +1,5 @@
 import { catchError, of, switchMap } from "rxjs";
-import { GetHome, GetCurrentWeather, GetHomeSuccess, GetCurrentWeatherSuccess, HomeActionTypes, GetWeekWeather, GetWeekWeatherSuccess, GetHomeFailure } from "./home.actions";
+import { GetHome, GetCurrentWeather, GetHomeSuccess, GetCurrentWeatherSuccess, HomeActionTypes, GetWeekWeather, GetWeekWeatherSuccess, GetHomeFailure, GetCurrentLocation, GetCurrentLocationSuccess, GetCurrentLocationFailure } from "./home.actions";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Actions,Effect, ofType } from "@ngrx/effects";
@@ -106,5 +106,38 @@ export class HomeEffects {
         );
       }),
     );
+
+    @Effect()
+    getCuurentLocation$ = this.actions$.pipe(
+      ofType(HomeActionTypes.GetCurrentLocation),
+      map((action) => (action as GetCurrentLocation).payload),
+      switchMap((payload) => {
+        return this.httpClient
+        .get(
+          `${environment.baseServerUrl}/locations/v1/cities/geoposition/search?apikey=${environment.apikey}&q=${payload.lat}%2C${payload.lon}&languge=en-us&details=false&toplevel=false`,
+        )
+        .pipe(
+          map((response: any) => {
+              if(response){
+                return new GetCurrentLocationSuccess({
+                    key:response.Key,
+                    cityName: response.LocalizedName
+                });
+              } else{
+                return new GetCurrentLocationFailure();
+              }
+          }),
+          catchError(error => {
+            console.log("error ",error)
+            if (error.error instanceof ErrorEvent) {
+                this.errorMsg = `Error: ${error.error.message}`;
+            } else {
+                this.errorMsg = `Error: ${error.message}`;
+            }
+            return of([]);
+        })
+        );
+      }),
+    ); 
 }
 
