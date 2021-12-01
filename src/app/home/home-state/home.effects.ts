@@ -1,11 +1,10 @@
 import { catchError, of, switchMap } from "rxjs";
-import { GetHome, GetCurrentWeather, GetHomeSuccess, GetCurrentWeatherSuccess, HomeActionTypes, GetWeekWeather, GetWeekWeatherSuccess } from "./home.actions";
+import { GetHome, GetCurrentWeather, GetHomeSuccess, GetCurrentWeatherSuccess, HomeActionTypes, GetWeekWeather, GetWeekWeatherSuccess, GetHomeFailure } from "./home.actions";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Actions,Effect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { Injectable } from "@angular/core";
-import { ValueConverter } from "@angular/compiler/src/render3/view/template";
 
 @Injectable({
     providedIn: 'root',
@@ -29,12 +28,14 @@ export class HomeEffects {
         )
         .pipe(
           map((response: any) => {
-            if(response.length===1){
-              return new GetHomeSuccess({
-                  key:response[0].Key,
-                  cityName: response[0].AdministrativeArea.LocalizedName
-              });
-            } return;
+              if(response.length>0){
+                return new GetHomeSuccess({
+                    key:response[0].Key,
+                    cityName: response[0].AdministrativeArea.LocalizedName
+                });
+              } else{
+                return new GetHomeFailure();
+              }
           }),
           catchError(error => {
             console.log("error ",error)

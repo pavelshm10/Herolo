@@ -35,11 +35,7 @@ export class HomeComponent implements OnInit {
         searchText:this.searchText
       }),
     )
-    
-    const index=this.favoritesArr.findIndex(item=>item.locationKey===this.locationKey);
-        if (index > -1) {
-          this.isFavorite=true;
-        }
+    this.updateFavoriteButton();
 
     this.store
     .select('home', 'locationKey')
@@ -64,10 +60,7 @@ export class HomeComponent implements OnInit {
         this.weekWeather=home.weekWeather;
         this.cityName=home.cityName;
         this.locationKey=home.locationKey;
-        const index=this.favoritesArr.findIndex(item=>item.locationKey===this.locationKey);
-        if (index > -1) {
-          this.isFavorite=true;
-        }
+        this.updateFavoriteButton();
       }
     });
   }
@@ -114,11 +107,15 @@ export class HomeComponent implements OnInit {
   }
 
   searchValueChange(){
-    this.store.dispatch(
-      new GetHome({
-        searchText:this.searchText    
-      }),
-    )
+    this.isFavorite=false;
+    if(this.searchText){
+      this.store.dispatch(
+        new GetHome({
+          searchText:this.searchText    
+        }),
+      )
+      this.updateFavoriteButton();
+    } 
   }
   
   onBlur(){
@@ -127,5 +124,14 @@ export class HomeComponent implements OnInit {
 
   onClick(){
     this.enterInput=true;
+  }
+
+  updateFavoriteButton(){
+    const index=this.favoritesArr.findIndex(item=>item.locationKey===this.locationKey);
+    if (index > -1) {
+      this.isFavorite=true;
+    } else{
+      this.isFavorite=false;
+    }
   }
 }

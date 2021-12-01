@@ -25,4 +25,9 @@ export class FavoritesComponent implements OnInit {
     }
   }
 
+  clear(){
+    localStorage.clear(); 
+    location.reload();
+  }
+
 }
