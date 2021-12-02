@@ -14,7 +14,8 @@ import { HomeState } from '../types/home-state.interface';
 export class HomeComponent implements OnInit {
   searchText:any='Tel-aviv';
   weatherText:any;
-  currentWeather:any;
+  celsiusWeather: any;
+  fahrenheitWeather: any;
   cityName:any;
   locationKey:any;
   weekWeather:any=[];
@@ -22,6 +23,8 @@ export class HomeComponent implements OnInit {
   unsubscribe$ = new Subject();
   isFavorite=false;
   favoritesArr:HomeState[]=[];
+  isCelsius=true;
+
   constructor(
     public store: Store<AppState>,
     public actionsSubject: ActionsSubject,
@@ -30,16 +33,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFavoritesArr();
-    this.findCurrentLocation();
+    // this.findCurrentLocation();
     this.updateFavoriteButton();
-
     this.store
     .select('home', 'locationKey')
     .pipe(
       takeUntil(this.unsubscribe$),
     )
     .subscribe((key) => {
-        key ? 
+       key ? 
        this.getWeatherAndDays(key)
        : ''
     });
@@ -52,24 +54,27 @@ export class HomeComponent implements OnInit {
     .subscribe((home) => {
       if(home.weekWeather){
         this.weatherText=home.weatherText;
-        this.currentWeather=home.currentWeather;
+        this.celsiusWeather=home.celsiusWeather;
+        this.fahrenheitWeather=home.fahrenheitWeather;
         this.weekWeather=home.weekWeather;
         this.cityName=home.cityName;
         this.searchText=home.cityName;
         this.locationKey=home.locationKey;
         this.updateFavoriteButton();
+        this.sharedService.setSearchText(home.cityName);
+        this.isCelsius=this.sharedService.getTempratureType();
       }
     });
   }
 
   findCurrentLocation(){
     navigator.geolocation.getCurrentPosition((position) => {
-          // this.store.dispatch(
-          //   new GetCurrentLocation({
-          //     lat:position.coords.latitude,
-          //     lon:position.coords.longitude
-          //   }),
-          // )
+          this.store.dispatch(
+            new GetCurrentLocation({
+              lat:position.coords.latitude,
+              lon:position.coords.longitude
+            }),
+          )
     });
   }
 
@@ -84,7 +89,8 @@ export class HomeComponent implements OnInit {
     this.favoritesArr.push({
       locationKey: this.locationKey,
       cityName:this.cityName,
-      currentWeather:this.currentWeather,
+      celsiusWeather: this.celsiusWeather,
+      fahrenheitWeather: this.fahrenheitWeather,
       weatherText: this.weatherText
     });
     this.sharedService.setFavorites(JSON.stringify(this.favoritesArr));
@@ -122,6 +128,7 @@ export class HomeComponent implements OnInit {
           searchText:this.searchText    
         }),
       )
+      this.sharedService.setSearchText(this.searchText);
       this.updateFavoriteButton();
     } 
   }

@@ -1,12 +1,24 @@
-<div id="grid">
-  <div id="header" class="basic-border">
-    <label>Herolo Wether Task</label>
-    <div class="buttons">
-      <button class="menu-button" [routerLink]="['/home']">Home</button>
-      <button class="menu-button"  [routerLink]="['/favorites']">Favorites</button>
+<mat-sidenav-container fullscreen>
+  <div id="grid">
+    <div id="header" class="basic-border">
+      <label>Herolo Wether Task</label>
+      <p>
+        <mat-slide-toggle [checked]="checked" [disabled]="disabled" class="theme" (click)="toggleTheme()">Change Theme</mat-slide-toggle>
+      </p>
+      <div class="buttons">
+        <button class="menu-button" [routerLink]="['/home']">Home</button>
+        <button class="menu-button"  [routerLink]="['/favorites']">Favorites</button>
+        <br>
+        <p>
+        <mat-slide-toggle class="temprature" (click)="onToggleChange()"
+            [checked]="checked">
+          {{tempratureType}}
+        </mat-slide-toggle>
+        </p>
+      </div>
+    </div>
+    <div class="page row basic-border">
+      <router-outlet></router-outlet>
     </div>
   </div>
-  <div class="page row basic-border">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+</mat-sidenav-container>

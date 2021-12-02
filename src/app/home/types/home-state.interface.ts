@@ -1,7 +1,8 @@
 export interface HomeState {
     locationKey?:number,
     cityName?: string,
-    currentWeather?: number,
+    celsiusWeather?: number,
+    fahrenheitWeather?: number,
     weatherText?:string,
     weekWeather?:[],
 }

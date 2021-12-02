@@ -14,7 +14,8 @@ export function homeReducer(state = initialState, action: HomeActions):HomeState
         case HomeActionTypes.GetCurrentWeatherSuccess:
           return {
             ...state,
-            currentWeather: action.payload.currentWeather,
+            celsiusWeather: action.payload.celsiusWeather,
+            fahrenheitWeather: action.payload.fahrenheitWeather,
             weatherText: action.payload.weatherText
           };
         case HomeActionTypes.GetWeekWeatherSuccess:

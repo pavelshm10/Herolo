@@ -50,7 +50,8 @@ export class GetCurrentWeatherSuccess implements Action {
     readonly type = HomeActionTypes.GetCurrentWeatherSuccess;
     constructor(
         public payload: {
-            currentWeather: number,
+            celsiusWeather: number,
+            fahrenheitWeather: number,
             weatherText: string
         },
       ) {}

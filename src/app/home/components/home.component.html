@@ -6,7 +6,12 @@
     <div class="row">
         <div class="current-weather basic-border box">
             {{cityName}}<br>
-            {{currentWeather}}&#8451;
+            <span *ngIf="isCelsius">
+                {{celsiusWeather}}&#8451;
+            </span>
+            <span *ngIf="!isCelsius">
+                {{fahrenheitWeather}}&#8457;
+            </span>
         </div>
         <div class="favorite-frame row" *ngIf="!isFavorite">
             <mat-icon class="favorite-icon">favorite_outline</mat-icon>

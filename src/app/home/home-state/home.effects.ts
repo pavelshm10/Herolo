@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { Actions,Effect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { Injectable } from "@angular/core";
+import { SharedService } from "src/app/shared/services/shared.service";
 
 @Injectable({
     providedIn: 'root',
@@ -12,9 +13,11 @@ import { Injectable } from "@angular/core";
 
 export class HomeEffects {
     errorMsg: string='';
+    isCelsius: boolean=true;
     constructor(
         private actions$: Actions,
         private httpClient: HttpClient,
+        private sharedService: SharedService
       ) {}
     
     @Effect()
@@ -61,8 +64,10 @@ export class HomeEffects {
         )
         .pipe(
           map((response: any) => {
+            this.isCelsius=this.sharedService.getTempratureType();
             return new GetCurrentWeatherSuccess({
-              currentWeather: response[0].Temperature.Metric.Value,
+              celsiusWeather: response[0].Temperature.Metric.Value,
+              fahrenheitWeather: response[0].Temperature.Imperial.Value,
               weatherText: response[0].WeatherText
             });
           }),
@@ -84,9 +89,10 @@ export class HomeEffects {
       ofType(HomeActionTypes.GetWeekWeather),
       map((action) => (action as GetWeekWeather).payload),
       switchMap((payload) => {
+        this.isCelsius=this.sharedService.getTempratureType();
         return this.httpClient
         .get(
-          `${environment.baseServerUrl}/forecasts/v1/daily/5day/${payload.key}?apikey=${environment.apikey}&languge=en-us&details=false&metric=true`,
+          `${environment.baseServerUrl}/forecasts/v1/daily/5day/${payload.key}?apikey=${environment.apikey}&languge=en-us&details=false&metric=${this.isCelsius}`,
         )
         .pipe(
           map((response: any) => {

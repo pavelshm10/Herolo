@@ -10,6 +10,7 @@ import { AppState } from './shared/types/state.interface.ts';
 import { homeReducer } from './home/home-state/home.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { SharedModule } from './shared/shared.module';
 
 export const reducers: ActionReducerMap<AppState> = {
   home: homeReducer,
@@ -40,6 +41,7 @@ const runtimeChecks: RuntimeChecks = {
     AppRoutingModule,
     HomeModule,
     FavoritesModule,
+    SharedModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
