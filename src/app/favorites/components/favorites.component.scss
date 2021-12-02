@@ -1,8 +1,41 @@
 @import 'src/styles/helpers';
+@media screen and (orientation: landscape) { 
+    .favorites-frame{
+        width: 700px;
+        margin-top: 200px;
+        display: flex;
+        justify-content: center;
+    }
+    .day-card-frame{
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+    }
+    .favorite-card{
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .favorites-frame{
+        flex-direction: column;
+        width:100%;
+        display: flex;
+    }
+    .day-card-frame{
+        margin:auto;
+    }
+    .favorite-card{
+        height: 120px;
+        width: 150px;
+        font-size: 20px;
+        margin: auto;
+    }
+}
 
 .favorite-card{
     margin: 5px;
-    margin-top: 200px;
     line-height: 2;
 }
 

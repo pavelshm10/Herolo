@@ -2,7 +2,7 @@
     <input class="search-control" type="search" (blur)="onBlur()" (click)="onClick()" placeholder="Search location..." [(ngModel)]="searchText" (ngModelChange)="searchValueChange()">
     <mat-icon class="icon" *ngIf="!enterInput">search</mat-icon>
 </div>
-<div class="info-frame basic-border">
+<div class="info-frame">
     <div class="row">
         <div class="current-weather basic-border box">
             {{cityName}}<br>
@@ -13,18 +13,18 @@
                 {{fahrenheitWeather}}&#8457;
             </span>
         </div>
-        <div class="favorite-frame row" *ngIf="!isFavorite">
+        <div class="favorite-frame" *ngIf="!isFavorite">
             <mat-icon class="favorite-icon">favorite_outline</mat-icon>
             <button class="favorite-button" (click)="addToFavorites()">Add to favorites</button>
         </div>
-        <div class="favorite-frame row" *ngIf="isFavorite">
+        <div class="favorite-frame" *ngIf="isFavorite">
             <mat-icon class="favorite-icon">favorite</mat-icon>
             <button class="favorite-button" (click)="removeFromFavorites()">Remove from favorites</button>
         </div>
     </div>    
     <h1>Scattered clouds</h1>
-    <div class="row day-card-frame">
-        <div *ngFor="let item of weekWeather" class="day-card basic-border box">
+    <div class="day-card-frame">
+        <div *ngFor="let item of weekWeather" class="day-card basic-border">
             {{item.Date| date : 'EEE'}}<br>
             {{item.Temperature.Maximum.Value}}&#8451;
         </div>

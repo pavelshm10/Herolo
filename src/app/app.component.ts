@@ -31,7 +31,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.router.navigate([''])
-
+    
     this.actionsSubject
     .pipe(
       ofType(HomeActionTypes.GetHomeSuccess),

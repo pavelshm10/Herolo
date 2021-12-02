@@ -1,5 +1,53 @@
 @import 'src/styles/helpers';
 
+@media screen and (orientation: landscape) { 
+    .favorite-frame{
+        margin-left: 370px;
+        margin-top: 10px;
+    }
+    .info-frame{
+        width: 700px;
+        border: 1px solid black;
+    }
+    .day-card-frame{
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+    }
+    .day-card{
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .favorite-frame{
+        margin-top: 10px;
+    } 
+    .info-frame{
+        flex-direction: column;
+        width:100%;
+        display: flex;
+    }
+    .day-card-frame{
+        margin:auto;
+    }
+    .day-card{
+        height: 120px;
+        font-size: 20px;
+        width: 150px;
+    }
+}
+
+.favorite-button{
+    width: 160px;
+    height: 25px;
+}
+
+.favorite-icon{
+    font-size: 14px;
+}
+
 .search-frame {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -30,7 +78,6 @@
 }
 
 .info-frame{
-    width: 700px;
     height: 500px;
 }
 
@@ -48,21 +95,6 @@ h1{
     line-height: 2;
 }
 
-.day-card-frame{
-    margin-top: 100px;
-}
 
-.favorite-frame{
-    margin-left: 370px;
-    margin-top: 10px;
-}
 
-.favorite-icon{
-    font-size: 14px;
-}
-
-.favorite-button{
-    width: 160px;
-    margin: auto auto 100px auto;
-}
 
