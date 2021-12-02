@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFavoritesArr();
-    // this.findCurrentLocation();
+    this.findCurrentLocation();
     this.updateFavoriteButton();
     this.store
     .select('home', 'locationKey')
